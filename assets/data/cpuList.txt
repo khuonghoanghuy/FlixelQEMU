@@ -1,0 +1,5 @@
+qemu32
+qemu64
+pentium
+pentium2
+pentium3
