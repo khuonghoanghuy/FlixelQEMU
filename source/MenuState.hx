@@ -2,7 +2,6 @@ package;
 
 import flixel.FlxState;
 import flixel.addons.ui.FlxUIDropDownMenu;
-import flixel.addons.ui.FlxUIList;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
@@ -36,18 +35,17 @@ class MenuState extends FlxState
 		var runButton:FlxButton = new FlxButton(10, 10, "Run", onRunMachine);
 		add(runButton);
 
-		var cpuOptions:Array<String> = loadOptions("assets/data/cpuList.txt", ["qemu32"]);
-		var typeMachinesOptions:Array<String> = loadOptions("assets/data/typeMachineList.txt", ["i386"]);
-
 		var machineTxt:FlxText = new FlxText(10, 50, 0, "Machine Config", 18);
 		machineTxt.color = FlxColor.BLACK;
 		add(machineTxt);
 
+		var cpuOptions:Array<String> = loadOptions("assets/data/cpuList.txt", ["qemu32"]);
 		cpuSelected = new FlxUIDropDownMenu(machineTxt.x, machineTxt.y + 50, FlxUIDropDownMenu.makeStrIdLabelArray(cpuOptions, true), function (cpuList:String) {
 			config.cpu = cpuOptions[Std.parseInt(cpuList)];
 		});
 		add(cpuSelected);
 
+		var typeMachinesOptions:Array<String> = loadOptions("assets/data/typeMachineList.txt", ["i386"]);
 		typeMachineSelected = new FlxUIDropDownMenu(machineTxt.x + 150, cpuSelected.y, FlxUIDropDownMenu.makeStrIdLabelArray(typeMachinesOptions, true), function (typeMachineThing:String) {
 			config.typeMachine = typeMachinesOptions[Std.parseInt(typeMachineThing)];
 		});
