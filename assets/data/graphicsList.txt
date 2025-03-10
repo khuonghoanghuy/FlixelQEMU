@@ -1,0 +1,4 @@
+std
+cirrus
+vmware
+nographic

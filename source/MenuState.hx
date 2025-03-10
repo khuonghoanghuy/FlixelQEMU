@@ -29,11 +29,6 @@ class MenuState extends FlxState
 		genUI();
 	}
 
-	// Drop Box
-	var cpuSelected:FlxUIDropDownMenu;
-	var typeMachineSelected:FlxUIDropDownMenu;
-	var extraText:FlxInputText;
-
 	/**
 	 * Ok so, if uiPref is "machine", mean is will set the ui as on machine, if uiPref is "misc", mean is will set the ui as on misc and other,...
 	 * cool
@@ -59,7 +54,7 @@ class MenuState extends FlxState
 		{
 			uiPrefIndex--;
 			if (uiPrefIndex < 0)
-				uiPrefIndex = 1;
+				uiPrefIndex = 2;
 			switch (uiPrefIndex)
 			{
 				case 0:
@@ -72,6 +67,11 @@ class MenuState extends FlxState
 					genUI();
 					uiPref = "misc";
 					getMisc();
+				case 2:
+					clear();
+					genUI();
+					uiPref = "graphics";
+					getGraphic();
 				default:
 					clear();
 					genUI();
@@ -83,7 +83,7 @@ class MenuState extends FlxState
 		uiPrefButtonRight = new FlxButton(FlxG.width - 100, FlxG.height - 40, "Page Right", function()
 		{
 			uiPrefIndex++;
-			if (uiPrefIndex > 1)
+			if (uiPrefIndex > 2)
 				uiPrefIndex = 0;
 			switch (uiPrefIndex)
 			{
@@ -97,6 +97,11 @@ class MenuState extends FlxState
 					genUI();
 					uiPref = "misc";
 					getMisc();
+				case 2:
+					clear();
+					genUI();
+					uiPref = "graphics";
+					getGraphic();
 				default:
 					clear();
 					genUI();
@@ -106,6 +111,9 @@ class MenuState extends FlxState
 		});
 		add(uiPrefButtonRight);
 	}
+
+	var cpuSelected:FlxUIDropDownMenu;
+	var typeMachineSelected:FlxUIDropDownMenu;
 
 	function getMachine()
 	{
@@ -127,6 +135,26 @@ class MenuState extends FlxState
 		quickCreateText([typeMachineSelected.x, typeMachineSelected.y - 25], "Type Machine");
 		add(typeMachineSelected);
 	}
+
+	var graphicsSelected:FlxUIDropDownMenu;
+
+	function getGraphic()
+	{
+		var machineTxt:FlxText = new FlxText(10, 45, 0, "Graphic Config", 18);
+		machineTxt.color = FlxColor.BLACK;
+		add(machineTxt);
+
+		var graphicOptions:Array<String> = loadOptions("assets/data/graphicsList.txt", ["std"]);
+		graphicsSelected = new FlxUIDropDownMenu(machineTxt.x, machineTxt.y + 50, FlxUIDropDownMenu.makeStrIdLabelArray(graphicOptions, true),
+			function(graphicList:String)
+			{
+				config.vga = graphicOptions[Std.parseInt(graphicList)];
+			});
+		quickCreateText([graphicsSelected.x, graphicsSelected.y - 25], "VGA Display");
+		add(graphicsSelected);
+	}
+
+	var extraText:FlxInputText;
 
 	function getMisc()
 	{
