@@ -55,26 +55,20 @@ class MenuState extends FlxState
 			uiPrefIndex--;
 			if (uiPrefIndex < 0)
 				uiPrefIndex = 2;
+			clear();
+			genUI();
 			switch (uiPrefIndex)
 			{
 				case 0:
-					clear();
-					genUI();
 					uiPref = "machine";
 					getMachine();
 				case 1:
-					clear();
-					genUI();
 					uiPref = "misc";
 					getMisc();
-				case 2:
-					clear();
-					genUI();
+				case 2:;
 					uiPref = "graphics";
 					getGraphic();
 				default:
-					clear();
-					genUI();
 					uiPref = "machine";
 					getMachine();
 			}
@@ -85,26 +79,20 @@ class MenuState extends FlxState
 			uiPrefIndex++;
 			if (uiPrefIndex > 2)
 				uiPrefIndex = 0;
+			clear();
+			genUI();
 			switch (uiPrefIndex)
 			{
 				case 0:
-					clear();
-					genUI();
 					uiPref = "machine";
 					getMachine();
 				case 1:
-					clear();
-					genUI();
 					uiPref = "misc";
 					getMisc();
-				case 2:
-					clear();
-					genUI();
+				case 2:;
 					uiPref = "graphics";
 					getGraphic();
 				default:
-					clear();
-					genUI();
 					uiPref = "machine";
 					getMachine();
 			}
