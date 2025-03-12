@@ -65,13 +65,13 @@ class MenuState extends FlxState
 				case 1:
 					clear();
 					genUI();
-					uiPref = "misc";
-					getMisc();
+					uiPref = "graphics";
+					getGraphic();
 				case 2:
 					clear();
 					genUI();
-					uiPref = "graphics";
-					getGraphic();
+					uiPref = "misc";
+					getMisc();
 				default:
 					clear();
 					genUI();
@@ -95,13 +95,13 @@ class MenuState extends FlxState
 				case 1:
 					clear();
 					genUI();
-					uiPref = "misc";
-					getMisc();
+					uiPref = "graphics";
+					getGraphic();
 				case 2:
 					clear();
 					genUI();
-					uiPref = "graphics";
-					getGraphic();
+					uiPref = "misc";
+					getMisc();
 				default:
 					clear();
 					genUI();
