@@ -29,10 +29,6 @@ class MenuState extends FlxState
 		genUI();
 	}
 
-	/**
-	 * Ok so, if uiPref is "machine", mean is will set the ui as on machine, if uiPref is "misc", mean is will set the ui as on misc and other,...
-	 * cool
-	 */
 	var uiPref:String = "machine";
 
 	var uiPrefButtonLeft:FlxButton;
