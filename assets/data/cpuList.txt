@@ -3,3 +3,17 @@ qemu64
 pentium
 pentium2
 pentium3
+pentium4
+core2duo
+athlon
+phenom
+opteron
+arm1176
+cortex-a9
+cortex-a15
+cortex-a53
+cortex-a57
+cortex-a72
+cortex-a76
+cortex-a55
+cortex-a75

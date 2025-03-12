@@ -5,13 +5,15 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="FlixelQEMU" file="FlixelQEMU" main="Main" version="0.0.1" company="Huy1234TH" />
+	<app
+		title="FlixelQEMU" file="FlixelQEMU" main="Main" version="0.0.1" company="Huy1234TH" />
 
 	<!--The
 	flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a
 	html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
-	<app preloader="flixel.system.FlxPreloader" />
+	<app
+		preloader="flixel.system.FlxPreloader" />
 
 	<!--Minimum
 	without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
@@ -21,21 +23,26 @@
 
 	<!--These
 	window settings apply to all targets-->
-	<window width="640" height="480" fps="60" background="#000000" hardware="true" vsync="false" />
+	<window
+		width="640" height="480" fps="60" background="#000000" hardware="true" vsync="false" />
 
 	<!--HTML5-specific-->
-	<window if="html5" resizable="true" />
+	<window
+		if="html5" resizable="true" />
 
 	<!--Desktop-specific-->
-	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" />
+	<window if="desktop" orientation="landscape"
+		fullscreen="false" resizable="true" />
 
 	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
+	<window if="mobile" orientation="landscape"
+		fullscreen="true" width="0" height="0" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
 	<set name="BUILD_DIR" value="export" />
-	<source path="source" />
+	<source
+		path="source" />
 	<assets path="assets" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
@@ -44,12 +51,12 @@
 
 	<!--In
 	case you want to use the addons package-->
-	<haxelib name="flixel-addons" />
+	<haxelib
+		name="flixel-addons" />
 
 	<!--In
 	case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
-
 	<!--In
 	case you want to use nape with flixel-->
 	<!--<haxelib
@@ -59,7 +66,8 @@
 
 	<!--Remove
 	the legacy health system-->
-	<haxedef name="FLX_NO_HEALTH" />
+	<haxedef
+		name="FLX_NO_HEALTH" />
 
 	<!--Enable
 	the Flixel core recording system-->
@@ -79,7 +87,8 @@
 	<!--Optimise
 	inputs, be careful you will get null errors if you don't use conditionals in your game-->
 	<haxedef name="FLX_NO_MOUSE" if="mobile" />
-	<haxedef name="FLX_NO_KEYBOARD" if="mobile" />
+	<haxedef
+		name="FLX_NO_KEYBOARD" if="mobile" />
 	<haxedef name="FLX_NO_TOUCH" if="desktop" />
 	<!--<haxedef
 	name="FLX_NO_GAMEPAD" />-->
@@ -105,7 +114,8 @@
 
 	<!--Enable
 	this for Nape release builds for a serious peformance improvement-->
-	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
+	<haxedef
+		name="NAPE_RELEASE_BUILD" unless="debug" />
 
 	<!-- Haxe 4.3.0+: Enable pretty syntax errors and stuff. -->
 	<!-- pretty (haxeflixel default), indent, classic (haxe compiler default) -->

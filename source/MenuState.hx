@@ -2,7 +2,6 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxState;
-import flixel.addons.ui.FlxUIDropDownMenu;
 import flixel.text.FlxInputText;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
@@ -19,7 +18,8 @@ class MenuState extends FlxState
 		cpuCores: 1,
 		display: "gtk",
 		vga: "std",
-		nameMachine: "default"
+		nameMachine: "default",
+		typeDisplay: "default"
 	};
 
 	override public function create()
@@ -65,7 +65,7 @@ class MenuState extends FlxState
 				case 1:
 					uiPref = "misc";
 					getMisc();
-				case 2:;
+				case 2:
 					uiPref = "graphics";
 					getGraphic();
 				default:
@@ -89,7 +89,7 @@ class MenuState extends FlxState
 				case 1:
 					uiPref = "misc";
 					getMisc();
-				case 2:;
+				case 2:
 					uiPref = "graphics";
 					getGraphic();
 				default:
@@ -100,8 +100,8 @@ class MenuState extends FlxState
 		add(uiPrefButtonRight);
 	}
 
-	var cpuSelected:FlxUIDropDownMenu;
-	var typeMachineSelected:FlxUIDropDownMenu;
+	var cpuSelected:FlxUIDropDownMenuCustom;
+	var typeMachineSelected:FlxUIDropDownMenuCustom;
 
 	function getMachine()
 	{
@@ -110,21 +110,25 @@ class MenuState extends FlxState
 		add(machineTxt);
 
 		var cpuOptions:Array<String> = loadOptions("assets/data/cpuList.txt", ["qemu32"]);
-		cpuSelected = new FlxUIDropDownMenu(machineTxt.x, machineTxt.y + 50, FlxUIDropDownMenu.makeStrIdLabelArray(cpuOptions, true), function (cpuList:String) {
+		cpuSelected = new FlxUIDropDownMenuCustom(machineTxt.x, machineTxt.y + 50, FlxUIDropDownMenuCustom.makeStrIdLabelArray(cpuOptions, true),
+			function(cpuList:String)
+			{
 			config.cpu = cpuOptions[Std.parseInt(cpuList)];
 		});
 		quickCreateText([cpuSelected.x, cpuSelected.y - 25], "CPU");
 		add(cpuSelected);
 
 		var typeMachinesOptions:Array<String> = loadOptions("assets/data/typeMachineList.txt", ["i386"]);
-		typeMachineSelected = new FlxUIDropDownMenu(machineTxt.x + 150, cpuSelected.y, FlxUIDropDownMenu.makeStrIdLabelArray(typeMachinesOptions, true), function (typeMachineThing:String) {
+		typeMachineSelected = new FlxUIDropDownMenuCustom(machineTxt.x + 150, cpuSelected.y,
+			FlxUIDropDownMenuCustom.makeStrIdLabelArray(typeMachinesOptions, true), function(typeMachineThing:String)
+		{
 			config.typeMachine = typeMachinesOptions[Std.parseInt(typeMachineThing)];
 		});
 		quickCreateText([typeMachineSelected.x, typeMachineSelected.y - 25], "Type Machine");
 		add(typeMachineSelected);
 	}
 
-	var graphicsSelected:FlxUIDropDownMenu;
+	var graphicsSelected:FlxUIDropDownMenuCustom;
 
 	function getGraphic()
 	{
@@ -133,7 +137,7 @@ class MenuState extends FlxState
 		add(machineTxt);
 
 		var graphicOptions:Array<String> = loadOptions("assets/data/graphicsList.txt", ["std"]);
-		graphicsSelected = new FlxUIDropDownMenu(machineTxt.x, machineTxt.y + 50, FlxUIDropDownMenu.makeStrIdLabelArray(graphicOptions, true),
+		graphicsSelected = new FlxUIDropDownMenuCustom(machineTxt.x, machineTxt.y + 50, FlxUIDropDownMenuCustom.makeStrIdLabelArray(graphicOptions, true),
 			function(graphicList:String)
 			{
 				config.vga = graphicOptions[Std.parseInt(graphicList)];
@@ -143,6 +147,7 @@ class MenuState extends FlxState
 	}
 
 	var extraText:FlxInputText;
+	var typeDisplaySelected:FlxUIDropDownMenuCustom;
 
 	function getMisc()
 	{
@@ -150,7 +155,16 @@ class MenuState extends FlxState
 		machineTxt.color = FlxColor.BLACK;
 		add(machineTxt);
 
-		extraText = new FlxInputText(machineTxt.x, machineTxt.y + 50, 0, "", 16);
+		var typeDisplayOptions:Array<String> = loadOptions("assets/data/typeDisplayList.txt", ["std"]);
+		typeDisplaySelected = new FlxUIDropDownMenuCustom(machineTxt.x, machineTxt.y + 50,
+			FlxUIDropDownMenuCustom.makeStrIdLabelArray(typeDisplayOptions, true), function(typeDisplayList:String)
+		{
+			config.typeDisplay = typeDisplayOptions[Std.parseInt(typeDisplayList)];
+		});
+		quickCreateText([typeDisplaySelected.x, typeDisplaySelected.y - 25], "Type Display Window");
+		add(typeDisplaySelected);
+
+		extraText = new FlxInputText(typeDisplaySelected.x, typeDisplaySelected.y + 50, 0, "", 16);
 		quickCreateText([extraText.x, extraText.y - 25], "Extras Params");
 		extraText.font = extraText.systemFont;
 		add(extraText);
@@ -191,6 +205,9 @@ class MenuState extends FlxState
 			+ ' -display ' + config.display
 			+ ' -vga ' + config.vga 
 			+ ' -name ' + config.nameMachine + extraText.text;
+		if (config.typeDisplay == "sdl")
+			command += ' -display sdl';
+
 		Sys.command(command);
 	}
 

@@ -1,2 +1,12 @@
 i386
 x86_64
+arm
+aarch64
+ppc
+ppc64
+mips
+mips64
+sparc
+sparc64
+riscv32
+riscv64

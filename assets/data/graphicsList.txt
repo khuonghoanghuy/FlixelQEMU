@@ -2,3 +2,7 @@ std
 cirrus
 vmware
 nographic
+qxl
+virtio
+vga
+bochs-display
